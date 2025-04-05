@@ -2,6 +2,7 @@
  * Type definition for a playlist item
  */
 export interface PlaylistItem {
+  artist: string;
   url: string;
   start: number;
   end: number;
@@ -32,13 +33,13 @@ export async function fetchPlaylistData(): Promise<PlaylistItem[]> {
     // Parse each line into a PlaylistItem
     const playlistItems = dataLines.map(line => {
       // Split by comma and trim whitespace
-      const [url, startStr, endStr] = line.split(',').map(item => item.trim());
+      const [artist, url, startStr, endStr] = line.split(',').map(item => item.trim());
       
       // Convert start and end to numbers
       const start = parseInt(startStr, 10);
       const end = parseInt(endStr, 10);
       
-      return { url, start, end };
+      return { artist, url, start, end };
     });
     
     return playlistItems;

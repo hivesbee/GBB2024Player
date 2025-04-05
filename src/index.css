@@ -29,29 +29,6 @@ body {
   min-height: 100vh;
 }
 
-header {
-  background-color: #ED6E33;
-  padding: 1rem;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1rem;
-}
-
-.nav-link {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: none;
-  padding: 0.5rem;
-}
-
-.nav-link:hover {
-  color: #535bf2;
-  text-decoration: underline;
-}
-
 main {
   flex: 1;
   padding: 2rem;
@@ -98,23 +75,136 @@ footer {
     background-color: #ffffff;
   }
   
-  header, footer {
+  footer {
     background-color: #ED6E33;
     color: #213547;
   }
   
-  .nav-link, .link {
+  .link {
     color: #747bff;
   }
   
-  .nav-link:hover, .link:hover {
+  .link:hover {
     color: #535bf2;
   }
+}
+
+/* YouTube Player styles */
+.youtube-player-container {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.player-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.player-wrapper iframe, 
+#youtube-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.now-playing-info {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.player-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.control-button {
+  padding: 10px 20px;
+  background-color: #ED6E33;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.control-button:hover {
+  background-color: #d85a20;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-button:active {
+  background-color: #b84c1b;
+  transform: translateY(0);
+}
+
+/* Style for control buttons in the random-play-section */
+.random-play-section .control-button {
+  font-size: 1rem;
 }
 
 /* Playlist styles */
 .playlist-container {
   width: 100%;
+}
+
+.youtube-player-section {
+  margin-bottom: 30px;
+}
+
+/* Player Controls Section styles */
+.random-play-section {
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.random-play-button {
+  padding: 10px 20px;
+  background-color: #ED6E33;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.random-play-button:hover {
+  background-color: #d85a20;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.random-play-button:active {
+  background-color: #b84c1b;
+  transform: translateY(0);
+}
+
+.random-play-button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .playlist {
@@ -126,37 +216,66 @@ footer {
   margin-bottom: 15px;
   padding: 15px;
   border-radius: 6px;
-  background-color: #2a2a2a;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  background-color: transparent;
+  box-shadow: none; /* Remove shadow as requested */
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .playlist-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: none; /* Remove shadow as requested */
+  background-color: rgba(255, 235, 225, 0.3); /* Very light orange, almost white */
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.playlist-item.active {
+  border-left-color: #ED6E33;
+  background-color: rgba(255, 235, 225, 0.3); /* Very light orange, almost white */
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.playlist-item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.video-artist {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #FFFFFF; /* White color as requested */
+  flex: 1;
+}
+
+.video-duration {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8); /* Brighter gray for better contrast */
+  margin: 0 15px;
+  white-space: nowrap;
 }
 
 .video-url {
-  margin-bottom: 10px;
+  margin-left: auto;
 }
 
 .video-url a {
-  color: #646cff;
+  color: #8A94FF; /* Brighter blue for better contrast */
   text-decoration: none;
-  word-break: break-all;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(138, 148, 255, 0.1);
+  display: inline-block;
+  transition: all 0.2s;
 }
 
 .video-url a:hover {
-  text-decoration: underline;
-  color: #535bf2;
-}
-
-.video-times {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  font-size: 0.9rem;
-  color: #aaa;
+  text-decoration: none;
+  background-color: rgba(138, 148, 255, 0.2);
+  color: #9FA5FF;
 }
 
 .error {
@@ -168,13 +287,70 @@ footer {
 }
 
 @media (prefers-color-scheme: light) {
-  .playlist-item {
-    background-color: #f5f5f5;
+  .youtube-player-container {
+    background-color: #f0f0f0;
     color: #333;
   }
   
-  .video-times {
-    color: #666;
+  .now-playing-info {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #333;
+  }
+  
+  .control-button,
+  .random-play-button {
+    background-color: #ED6E33;
+    color: white;
+  }
+  
+  .control-button:hover,
+  .random-play-button:hover {
+    background-color: #d85a20;
+  }
+  
+  .control-button:active,
+  .random-play-button:active {
+    background-color: #b84c1b;
+  }
+  
+  .random-play-button:disabled {
+    background-color: #999;
+  }
+  
+  .playlist-item {
+    background-color: transparent;
+    color: #213547;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .playlist-item:hover {
+    background-color: rgba(255, 245, 240, 0.7); /* Very light orange, almost white for light mode */
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .playlist-item.active {
+    background-color: rgba(255, 245, 240, 0.7); /* Very light orange, almost white for light mode */
+    border-left-color: #ED6E33;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .video-artist {
+    color: #000000; /* Black for light mode to maintain contrast */
+    font-weight: 700; /* Keep font bolder in light mode */
+  }
+  
+  .video-duration {
+    color: #444; /* Darker gray for better contrast on light mode */
+  }
+  
+  .video-url a {
+    color: #5965FF; /* Darker blue for better contrast on light mode */
+    background-color: rgba(89, 101, 255, 0.1);
+  }
+  
+  .video-url a:hover {
+    background-color: rgba(89, 101, 255, 0.2);
+    color: #4550E6;
   }
   
   .error {
